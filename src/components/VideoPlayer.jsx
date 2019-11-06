@@ -1,17 +1,17 @@
 var VideoPlayer = props => {
-  const {title, description} = props.video.snippet;
-  const {videoId} = props.video.id;
-  return (
+  return props.video !== undefined ?
     <div className="video-player">
       <div className="embed-responsive embed-responsive-16by9">
-        <iframe className="embed-responsive-item" src={`https://www.youtube.com/embed/${videoId}`} allowFullScreen></iframe>
+        <iframe className="embed-responsive-item" src={`https://www.youtube.com/embed/${props.video.id.videoId}`} allowFullScreen></iframe>
       </div>
       <div className="video-player-details">
-        <h3>{title}</h3>
-        <div>{description}</div>
+        <h3>{props.video.snippet.title}</h3>
+        <div>{props.video.snippet.description}</div>
       </div>
     </div>
-  );
+    :
+    <div className="video-player loading">Loading...</div>
+  ;
 };
 
 // PropTypes tell other developers what `props` a component expects

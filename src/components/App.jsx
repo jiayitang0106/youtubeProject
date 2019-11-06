@@ -18,7 +18,7 @@ class App extends React.Component {
       max: 5,
       key: YOUTUBE_API_KEY
     };
-    this.props.search(options, data => this.setState({videos: data, currentVideoIndex: 0}));
+    this.props.searchYouTube(options, data => this.setState({videos: data, currentVideoIndex: 0}));
   }
 
   handleVideoSelection(index) {
@@ -38,7 +38,7 @@ class App extends React.Component {
         </nav>
         <div className="row">
           <div className="col-md-7">
-            {currentVideo && <VideoPlayer video={currentVideo} />}
+            <VideoPlayer video={currentVideo} />
           </div>
           <div className="col-md-5">
             <VideoList
