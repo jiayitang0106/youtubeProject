@@ -1,14 +1,24 @@
 import VideoList from './VideoList.js';
 import VideoPlayer from './VideoPlayer.js';
 import exampleVideoData from '/src/data/exampleVideoData.js';
+import YOUTUBE_API_KEY from '/src/config/youtube.js';
 
 class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      videos: exampleVideoData,
-      currentVideoIndex: 0,
+      videos: [],
+      currentVideoIndex: -1,
     };
+  }
+
+  componentDidMount() {
+    const options = {
+      query: '',
+      max: 5,
+      key: YOUTUBE_API_KEY
+    };
+    this.props.search(options, data => this.setState({videos: data, currentVideoIndex: 0}));
   }
 
   handleVideoSelection(index) {
@@ -18,6 +28,7 @@ class App extends React.Component {
   }
 
   render() {
+    const currentVideo = this.state.videos[this.state.currentVideoIndex];
     return (
       <div>
         <nav className="navbar">
@@ -27,7 +38,7 @@ class App extends React.Component {
         </nav>
         <div className="row">
           <div className="col-md-7">
-            <VideoPlayer video={this.state.videos[this.state.currentVideoIndex]} />
+            {currentVideo && <VideoPlayer video={currentVideo} />}
           </div>
           <div className="col-md-5">
             <VideoList
