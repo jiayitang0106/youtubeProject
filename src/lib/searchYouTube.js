@@ -7,6 +7,7 @@ var searchYouTube = (options, callback) => {
       maxResults: options.max,
       key: options.key,
       type: 'video',
+      videoEmbeddable: 'true',
     }
   )
     .done(data => callback(data.items))
