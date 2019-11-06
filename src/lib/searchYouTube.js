@@ -7,8 +7,9 @@ var searchYouTube = (options, callback) => {
       maxResults: options.max,
       key: options.key,
       type: 'video',
-    },)
-    .done(data => {callback(data.items)})
+    }
+  )
+    .done(data => callback(data.items))
     .fail(data => console.log('FAILURE:', data));
 };
 
